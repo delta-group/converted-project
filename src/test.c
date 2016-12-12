@@ -52,16 +52,61 @@ int getDistance() {
     return centimeters;
 }
 
+// Buzzer
+void buzzEnable(void) {
+	// turn on the buzzer (using the method from lab 8)
+	// tone(buzzPin,1000);
+}
+
+void buzzDisable(void) {
+	// turn off the buzzer (called when target is out of range)
+	// noTone(buzzPin);
+}
+
+// LED
+int LEDColor(int distance) {
+  if (distance >= 200) {
+    // RED is represented by 2
+    return 2;           
+
+  }
+  else if (distance >= 130) {
+    // YELLOW is represented by 1
+    return 1;
+  }
+  else {
+    // GREEN is represented by 0
+    return 0;
+  }
+}
+
+void turnOnLED(int color) {
+	switch(color){
+		case 0: 
+			// GREEN
+			GREEN_ON;
+			buzzEnable();
+			break;
+		case 1: 
+			// YELLOW
+			YELLOW_ON;	
+			buzzDisable();
+			break;
+		case 2: 
+			// RED
+			RED_ON;		
+			buzzDisable();
+			break;
+	  }
+}
+
 int main(void) {
 
-    CPU_PRESCALE(2);
-    SONAR_CONFIG;
+	//CPU_PRESCALE(2);
 	OUTPUT_CONFIG;
     
 	while(1){
     
 	}
 
-    while(1){
-    }
 }
