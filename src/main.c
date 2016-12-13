@@ -26,11 +26,9 @@
 #define BUZZ_ON             (PORTB |= (1<<BUZZ_PIN))
 #define BUZZ_OFF            (PORTB &= ~(1<<BUZZ_PIN))
 
-//--- Port Setup ---------------------------------------------------------
+//--- Device Setup -------------------------------------------------------
 #define OUTPUT_CONFIG       (DDRB |= (1<<RED_PIN) | (1<<GREEN_PIN) | (1<<BUZZ_PIN))
-
-//--- Clock/Timer Setup --------------------------------------------------
-#define CPU_PRESCALE(n)     (CLKPR = 0x80, CLKPR = (n))
+int buzzerState = 1;
 
 /************************************************************************/
 /*                     Device function definitions                      */
@@ -38,8 +36,26 @@
 
 //--- Buzzer -------------------------------------------------------------
 void buzzEnable(void) {
-    // turn on the buzzer (using the method from lab 8)
-    int on = 1;
+    char ticks = 0;
+    while(1) {
+        while((TIFR0 & 0x01) == 0) {} 
+        TIFR0 = 1;
+        ticks++;
+        if (ticks == 60) {
+            ticks = 0;
+            toggleBuzz();
+        }
+    }
+}
+
+void toggleBuzz(void) {
+    if (buzzerState == 1) {
+        BUZZ_OFF;
+        buzzerState = 0;
+    } else {
+        BUZZ_ON;
+        buzzerState = 1;
+    }
 }
 
 void buzzDisable(void) {
@@ -73,11 +89,13 @@ void LEDColor(int distance) {
 /************************************************************************/
 
 int main(void) {
-    //--- Device Setup ---------------------------------------------------
+    //--- Setup ----------------------------------------------------------
     int distance;
-    
-    CPU_PRESCALE(2);
     OUTPUT_CONFIG;
+    
+    // set clock to proper speed
+    TIMSK0 = 0;
+    TCCR0B = 2;
     
     //--- Main Loop ------------------------------------------------------
     while(1){
