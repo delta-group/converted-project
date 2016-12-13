@@ -25,7 +25,7 @@
 #define BUZZ_ON         (PORTB |= (1<<BUZZ_PIN))
 #define BUZZ_OFF        (PORTB &= ~(1<<BUZZ_PIN))
 
-//--- Port Direction -----------------------------------------------------
+//--- Port Setup ---------------------------------------------------------
 #define OUTPUT_CONFIG   (DDRB |= (1<<RED_PIN) | (1<<GREEN_PIN) | (1<<BUZZ_PIN))
 
 //--- Clock/Timer Setup --------------------------------------------------
