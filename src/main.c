@@ -49,6 +49,11 @@ void buzzDisable(void) {
 
 //--- LED ----------------------------------------------------------------
 void LEDColor(int distance) {
+    RED_OFF;
+    YELLOW_OFF;
+    GREEN_OFF;
+
+
     if (distance >= 200) {
         RED_ON;
         buzzDisable();

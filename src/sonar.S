@@ -4,5 +4,6 @@
 	.global		sonar
 
 sonar:
-	ldi		r24, 210
+	clr		r25
+	ldi		r24, 120
 	ret

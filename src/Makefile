@@ -12,8 +12,8 @@ F_CPU	= 16000000
 
 # uncomment one of these linesand check for your system:
 #PORT	= COM4
-PORT	= /dev/ttyACM0
-#PORT	= /dev/cu.usbmodem1421
+#PORT	= /dev/ttyACM0
+PORT	= /dev/cu.usbmodem1421
 
 # uncomment one of these lines
 MAKE_BASE = ../
