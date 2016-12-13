@@ -26,10 +26,10 @@
 #define BUZZ_OFF            (PORTB &= ~(1<<BUZZ_PIN))
 
 //--- Port Setup ---------------------------------------------------------
-#define OUTPUT_CONFIG		(DDRB |= (1<<RED_PIN) | (1<<GREEN_PIN) | (1<<BUZZ_PIN))
+#define OUTPUT_CONFIG       (DDRB |= (1<<RED_PIN) | (1<<GREEN_PIN) | (1<<BUZZ_PIN))
 
 //--- Clock/Timer Setup --------------------------------------------------
-#define CPU_PRESCALE(n)		(CLKPR = 0x80, CLKPR = (n))
+#define CPU_PRESCALE(n)     (CLKPR = 0x80, CLKPR = (n))
 
 /************************************************************************/
 /*                     Device function definitions                      */
@@ -46,38 +46,32 @@ void buzzDisable(void) {
 
 //--- LED ----------------------------------------------------------------
 void LEDColor(int distance) {
-	if (distance >= 200) {
-		// when object is far away, turn on red LED
-		// and disable buzzer
-		RED_ON;
-		buzzDisable();
-	}
-	else if (distance >= 130) {
-		// when object is at medium range, turn on yellow LED
-		// and disable buzzer
-		YELLOW_ON;
-		buzzDisable();
-	}
+    if (distance >= 200) {
+        RED_ON;
+        buzzDisable();
+    }
+    else if (distance >= 130) {
+        YELLOW_ON;
+        buzzDisable();
+    }
 	else {
-		// when object is in range, turn on green LED
-		// and enable buzzer
-		GREEN_ON;
-		buzzEnable();
-	 }
+        GREEN_ON;
+        buzzEnable();
+    }
 }
 
 /************************************************************************/
-/*                           MAIN function	                            */
+/*                           MAIN function                              */
 /************************************************************************/
 
 int main(void) {
-	/*** Device Setup ***/
+	//--- Device Setup ---------------------------------------------------
 	CPU_PRESCALE(2);
 	OUTPUT_CONFIG;
     
-	/*** Infinite Loop ***/
-	while(1){
+	//--- Main Loop ------------------------------------------------------
+    while(1){
     
-	}
+    }
 
 }
