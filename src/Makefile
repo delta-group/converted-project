@@ -1,10 +1,10 @@
-# Makefile for converted-group-project
+#Makefile for converted-group-project
 
 TARGET	= test
 
 CSRCS 	= $(wildcard *.c)
+ASRCS	= $(wildcard *.S)
 INTTBL	= FALSE
-CFLAGS  = -std=gnu99
 
 # board definition
 MCU	= atmega328p

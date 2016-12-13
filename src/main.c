@@ -1,6 +1,5 @@
 #include <avr/io.h>
 #include <util/delay.h>
-#include "sonar.h"
 
 /************************************************************************/
 /*                           Defining Constants                         */
@@ -40,10 +39,12 @@
 //--- Buzzer -------------------------------------------------------------
 void buzzEnable(void) {
     // turn on the buzzer (using the method from lab 8)
+    int on = 1;
 }
 
 void buzzDisable(void) {
     // turn off the buzzer (called when target is out of range)
+    int off = 1;
 }
 
 //--- LED ----------------------------------------------------------------
@@ -78,4 +79,5 @@ int main(void) {
         distance = sonar();
         LEDColor(distance);
     }
+    return 0;
 }
