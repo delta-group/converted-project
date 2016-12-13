@@ -14,8 +14,8 @@
 
 //--- PIN Controls -------------------------------------------------------
 #define RED_ON				(PORTB |= (0x0F))
-#define RED_OFF				(PORTB &= ~(1<<RED_PIN))
-#define GREEN_ON			(PORTB |= (0x10))
+#define RED_OFF             (PORTB &= ~(1<<RED_PIN))
+#define GREEN_ON            (PORTB |= (0x10))
 #define GREEN_OFF			(PORTB &= ~(1<<GREEN_PIN))
 #define YELLOW_ON			(PORTB |= (1<<RED_PIN) | (1<<GREEN_PIN))
 #define YELLOW_OFF			(PORTB &= (0x00))
