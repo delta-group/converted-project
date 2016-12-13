@@ -37,11 +37,11 @@
 
 //--- Buzzer -------------------------------------------------------------
 void buzzEnable(void) {
-	// turn on the buzzer (using the method from lab 8)
+    // turn on the buzzer (using the method from lab 8)
 }
 
 void buzzDisable(void) {
-	// turn off the buzzer (called when target is out of range)
+    // turn off the buzzer (called when target is out of range)
 }
 
 //--- LED ----------------------------------------------------------------
@@ -65,13 +65,12 @@ void LEDColor(int distance) {
 /************************************************************************/
 
 int main(void) {
-	//--- Device Setup ---------------------------------------------------
-	CPU_PRESCALE(2);
-	OUTPUT_CONFIG;
+    //--- Device Setup ---------------------------------------------------
+    CPU_PRESCALE(2);
+    OUTPUT_CONFIG;
     
-	//--- Main Loop ------------------------------------------------------
+    //--- Main Loop ------------------------------------------------------
     while(1){
     
     }
-
 }
