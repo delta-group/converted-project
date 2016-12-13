@@ -1,11 +1,13 @@
 #include <avr/io.h>
 #include <util/delay.h>
+#include "sonar.h"
 
 /************************************************************************/
 /*                           Defining Constants                         */
 /************************************************************************/
 
 //--- PIN Assignments ----------------------------------------------------
+#define RED_PIN             3
 #define GREEN_PIN           4
 #define BLUE_PIN            5
 #define BUZZ_PIN            1
@@ -66,11 +68,14 @@ void LEDColor(int distance) {
 
 int main(void) {
     //--- Device Setup ---------------------------------------------------
+    int distance;
+    
     CPU_PRESCALE(2);
     OUTPUT_CONFIG;
     
     //--- Main Loop ------------------------------------------------------
     while(1){
-    
+        distance = sonar();
+        LEDColor(distance);
     }
 }
