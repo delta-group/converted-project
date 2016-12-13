@@ -93,9 +93,9 @@ int main(void) {
     int distance;
     OUTPUT_CONFIG;
     
-    // set clock to proper speed
-    TIMSK0 = 0;
-    TCCR0B = 2;
+    // set clock to proper speed for buzzer
+     TIMSK0 = 0;
+     TCCR0B = 2;
     
     //--- Main Loop ------------------------------------------------------
     while(1){
