@@ -4,6 +4,9 @@
 	.section	.text
 	.global		sonar
 
+;-----------------------------------------------;
+;               SONAR FUNCTION                  ;
+;-----------------------------------------------;
 sonar:
         sbi             _DDRD, TRIG_PIN         ; sets pin 2's direction to output => Trig Pin
         cbi             _DDRD, ECHO_PIN         ; sets pin 4's direction to input  <= Echo Pin
@@ -13,13 +16,19 @@ send:
         call            tenMicroDelay           ; HIGH signal must continue for 10 microseconds
         cbi             _PORTD,	TRIG_PIN        ; set the output to LOW after pings are sent
 receive:
+        clr             r21                     ; clear counter value
+waiting:
         call            hundredCMDelay          ; wait long enough for the sound to travel 100 cm (each way)
-						; check for a ping response
-                                                ; break out of loop if response received
-        rjmp		receive			; otherwise keep waiting for the response
-	clr		r25			; zero out high 8 bits of 16-bit return register
-        ldi		r24, 120		; set lower 8 bits to the value 120
+        inc             r21                     ; increment counter
+        sbis            _PINB, ECHO_PIN		; break out of loop if response received
+        rjmp            waiting                 ; otherwise keep waiting for the response
+	clr		r25			; zero out high bits of return register
+        mov		r24, r16                ; set lower bits to the value of counter
         ret					; return to calling function
+
+;-----------------------------------------------;
+;               DELAY FUNCTIONS                 ;
+;-----------------------------------------------;
 tenMicroDelay:
         ldi             r18, 2                  ; set outer loop to 2
 1:
