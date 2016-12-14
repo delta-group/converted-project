@@ -19,9 +19,9 @@ send:
 receive:
         clr             r21                     ; clear counter value
 waiting:
-        call            tenMicroDelay           ; wait long enough for the sound to travel 100 cm (each way)
-        sbis            _PIND, ECHO_PIN		; break out of loop if response received
+        call            hundredCMDelay          ; wait long enough for the sound to travel 100 cm (each way)
         inc             r21                     ; increment counter
+        sbis            _PIND, ECHO_PIN		; break out of loop if response received
         rjmp            waiting                 ; otherwise keep waiting for the response
         clr		r25			; zero out high bits of return register
         mov		r24, r21                ; set lower bits to the value of counter
@@ -46,8 +46,11 @@ hundredCMDelay:
 5:
         ldi             r19, 200                 ; set middle loop to 58 (microseconds per centimeter)
 6:      
-        dec             r19                     ; decrement middle loop
-        brne            6b                      ; keep looping until (r19 == 0)
-        dec             r18                     ; decrement outer loop
-        brne            5b                      ; keep looping until (r18 == 0)
+        ldi             r20, 100                
+7:
+        dec             r20                     ; decrement middle loop
+        brne            7b                      ; keep looping until (r19 == 0)
+        dec             r19                     ; decrement outer loop
+        brne            6b                      ; keep looping until (r18 == 0)
+        
         ret                                     ; return after a delay equal to 100 centimeters
