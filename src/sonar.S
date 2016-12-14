@@ -1,5 +1,5 @@
 ; ASM code for the HC-SRO4 Sonar device
-#define	"config.inc"
+#include "config.inc"
 
 	.section	.text
 	.global		sonar

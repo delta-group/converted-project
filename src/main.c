@@ -35,6 +35,15 @@ int buzzerState = 1;
 /************************************************************************/
 
 //--- Buzzer -------------------------------------------------------------
+void toggleBuzz(void) {
+    if (buzzerState == 1) {
+        BUZZ_OFF;
+        buzzerState = 0;
+    } else {
+        BUZZ_ON;
+        buzzerState = 1;
+    }
+}
 void buzzEnable(void) {
     char ticks = 0;
     while(1) {
@@ -47,17 +56,6 @@ void buzzEnable(void) {
         }
     }
 }
-
-void toggleBuzz(void) {
-    if (buzzerState == 1) {
-        BUZZ_OFF;
-        buzzerState = 0;
-    } else {
-        BUZZ_ON;
-        buzzerState = 1;
-    }
-}
-
 void buzzDisable(void) {
     // turn off the buzzer (called when target is out of range)
     int off = 1;
