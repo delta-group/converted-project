@@ -9,11 +9,11 @@ sonar:
         cbi             _DDRD, ECHO_PIN         ; sets pin 4's direction to input  <= Echo Pin
         cbi             _PORTD,	TRIG_PIN        ; sets the output to LOW
 send:						
-						; initialize the trigger and send out a signal
-						; start a timer
+						; set Trig Pin to HIGH to send a burst of 8 pings
+        rjmp            send                    ; HIGH signal must continue for 10 microseconds
 receive:
-						; check for a signal
-        					; break out of the loop if certain conditions are met		
+						; check for a ping response
+                                                ; break out of loop if response received
         rjmp		receive			; otherwise keep waiting for the response
 	clr		r25			; zero out high 8 bits of 16-bit return register
         ldi		r24, 120		; set lower 8 bits to the value 120
