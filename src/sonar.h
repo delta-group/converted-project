@@ -1,3 +1,3 @@
 // ASM function that takes no parameters
-// and returns and int (distance in centimeters) 
+// and returns an int (hundreds of centimeters)
 int sonar(void);
