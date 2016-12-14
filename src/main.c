@@ -70,11 +70,11 @@ void LEDColor(int distance) {
     GREEN_OFF;
 
 
-    if (distance >= 200) {
+    if (distance >= 3) {
         RED_ON;
         buzzDisable();
     }
-    else if (distance >= 130) {
+    else if (distance >= 2) {
         YELLOW_ON;
         buzzDisable();
     }
@@ -93,7 +93,7 @@ int main(void) {
     int distance;
     OUTPUT_CONFIG;
     
-    // set timer/counter to proper speed for buzzer
+    // Set Timer/Counter to proper speed for buzzer
      TIMSK0 = 0;
      TCCR0B = 2;
     
