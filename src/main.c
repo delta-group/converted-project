@@ -92,8 +92,8 @@ int main(void) {
     OUTPUT_CONFIG;
     
     // Set Timer/Counter to proper speed for buzzer
-     TIMSK0 = 0;
-     TCCR0B = 2;
+    TIMSK0 = 0;
+    TCCR0B = 2;
     
     //--- Main Loop ------------------------------------------------------
     while(1){
